@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Flight</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: 0 auto; }
+        input, select { width: 100%; margin: 10px 0; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Add New Flight</h1>
+    <form method="POST">
+        <input type="text" name="flight_number" placeholder="Flight Number" required>
+        <input type="text" name="airline" placeholder="Airline" required>
+        <input type="text" name="origin" placeholder="Origin" required>
+        <input type="text" name="destination" placeholder="Destination" required>
+        <input type="submit" value="Add Flight">
+    </form>
+    <a href="/dashboard">Cancel</a>
+</body>
+</html>

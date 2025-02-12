@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Details</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <h1>{{ flight.number }} Details</h1>
+    <p>{{ flight.airline }}: {{ flight.origin }} → {{ flight.destination }}</p>
+    
+    <canvas id="priceChart"></canvas>
+    
+    <a href="/dashboard">Back to Dashboard</a>
+    
+    <script>
+        var ctx = document.getElementById('priceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{% for price in flight.prices %}'{{ price.date }}'{% if not loop.last %},{% endif %}{% endfor %}],
+                datasets: [{
+                    label: 'Price History',
+                    data: [{% for price in flight.prices %}{{ price.price }}{% if not loop.last %},{% endif %}{% endfor %}],
+                    borderColor: 'blue',
+                    tension: 0.1
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
