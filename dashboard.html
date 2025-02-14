@@ -1,37 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flight Price Tracker - Dashboard</title>
-    <style>
-        body { font-family: Arial; max-width: 800px; margin: 0 auto; }
-        .flight-card { 
-            border: 1px solid #ccc; 
-            margin: 10px 0; 
-            padding: 10px; 
-            display: flex; 
-            justify-content: space-between; 
-        }
-        .actions { display: flex; gap: 10px; }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Flight Price Tracker - Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: #f0f2f5;
+      padding: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .header a {
+      text-decoration: none;
+      color: #007bff;
+      margin-left: 15px;
+    }
+    .flight-card {
+      position: relative;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 10px 0;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .flight-card .content {
+      position: relative;
+      z-index: 2;
+    }
+    .flight-card .logo {
+      position: absolute;
+      top: 50%;
+      left: 15%;
+      transform: translate(60%, -50%) scale(1);
+      opacity: 1;
+      z-index: 1;
+    }
+    .actions a {
+      text-decoration: none;
+      color: #007bff;
+      margin-right: 10px;
+    }
+    .add-flight-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #fff;
+      border: 2px solid #28a745;
+      color: #000;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
+  <div class="header">
     <h1>My Flight Tracker</h1>
-    <a href="/add_flight">Add New Flight</a> | 
-    <a href="/logout">Logout</a>
-    
-    {% for flight in flights %}
-    <div class="flight-card">
-        <div>
-            <h3>{{ flight.number }} - {{ flight.airline }}</h3>
-            <p>{{ flight.origin }} → {{ flight.destination }}</p>
-            <p>Current Price: ${{ flight.prices[-1].price }}</p>
-        </div>
-        <div class="actions">
-            <a href="/flight/{{ flight.id }}">Details</a>
-            <a href="/export/{{ flight.id }}">Export</a>
-        </div>
+    <div>
+      <a href="/add_flight" class="add-flight-btn">Add New Flight</a>
+      <a href="/logout">Logout</a>
     </div>
-    {% endfor %}
+  </div>
+
+  {% for flight in flights %}
+  <div class="flight-card">
+    <img class="logo" src="/static/logos/{{ flight.logo }}" alt="{{ flight.airline }} Logo">
+    <div class="content">
+      <h3>{{ flight.number }} - {{ flight.airline }}</h3>
+      <p>{{ flight.origin }} -> {{ flight.destination }}</p>
+      <p>{{ flight.full_origin }} -> {{ flight.full_destination }}</p>
+      <p>Current Price: ${{ flight.prices[-1].price }}</p>
+      <div class="actions">
+        <a href="/flight/{{ flight.id }}">Details</a>
+        <a href="/export/{{ flight.id }}">Export</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </body>
 </html>

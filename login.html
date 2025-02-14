@@ -1,28 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flight Price Tracker - Login</title>
-    <style>
-        body { font-family: Arial; text-align: center; margin-top: 50px; }
-        .login-form { 
-            width: 300px; 
-            margin: 0 auto; 
-            border: 1px solid #ccc; 
-            padding: 20px; 
-            border-radius: 5px; 
-        }
-        input { width: 100%; margin: 10px 0; padding: 5px; }
-    </style>
+  <title>Flight Price Tracker - Login</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f2f5;
+      margin: 0;
+      font-family: Arial;
+    }
+    .login-form {
+      width: 300px;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .login-form input {
+      width: 80%;
+      margin: 10px auto;
+      padding: 5px;
+      display: block;
+    }
+    .error {
+      color: red;
+      display: none;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-    <div class="login-form">
-        <h2>Flight Price Tracker</h2>
-        <form method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="submit" value="Login">
-        </form>
-        <p>Hint: Use username 'demo' and password 'password123'</p>
-    </div>
+  <div class="login-form">
+    <h2>Flight Price Tracker</h2>
+    <div id="error-message" class="error">Invalid credentials</div>
+    <form method="POST">
+      <input type="text" name="username" placeholder="Username" required id="username">
+      <input type="password" name="password" placeholder="Password" required id="password">
+      <input type="submit" value="Login">
+    </form>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var error = "{{ error|default('') }}";
+      if (error === "1") {
+        document.getElementById('error-message').style.display = 'block';
+        document.getElementById('username').style.border = '2px solid red';
+        document.getElementById('password').style.border = '2px solid red';
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,21 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Flight</title>
-    <style>
-        body { font-family: Arial; max-width: 500px; margin: 0 auto; }
-        input, select { width: 100%; margin: 10px 0; padding: 5px; }
-    </style>
+  <title>Add Flight</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    .form-container input, .form-container select {
+      width: 90%;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      display: block;
+    }
+    .form-container input[type="submit"] {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    .form-container input[type="submit"]:hover {
+      background-color: #218838;
+    }
+    .form-container a {
+      text-decoration: none;
+      color: #007bff;
+    }
+  </style>
 </head>
 <body>
-    <h1>Add New Flight</h1>
-    <form method="POST">
-        <input type="text" name="flight_number" placeholder="Flight Number" required>
-        <input type="text" name="airline" placeholder="Airline" required>
-        <input type="text" name="origin" placeholder="Origin" required>
-        <input type="text" name="destination" placeholder="Destination" required>
-        <input type="submit" value="Add Flight">
-    </form>
-    <a href="/dashboard">Cancel</a>
+<div class="form-container">
+  <h1>Add New Flight</h1>
+  <form method="POST">
+    <input type="text" name="flight_number" placeholder="Flight Number" required>
+    <input type="text" name="airline" placeholder="Airline" required>
+    <input type="text" name="origin" placeholder="Origin (Code)" required>
+    <input type="text" name="full_origin" placeholder="Origin (Full Name)" required>
+    <input type="text" name="destination" placeholder="Destination (Code)" required>
+    <input type="text" name="full_destination" placeholder="Destination (Full Name)" required>
+    <input type="text" name="logo" placeholder="Logo Filename (e.g., airline.png)" required>
+    <input type="submit" value="Add Flight">
+  </form>
+  <a href="/dashboard">Cancel</a>
+</div>
 </body>
 </html>
